@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Josh Acosta — Analytical & Reporting Services</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0D1B2A;
+    --navy-mid: #1A3A5C;
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --cream: #F8F5EF;
+    --cream-dark: #EDE8DE;
+    --text: #1A1A1A;
+    --text-mid: #4A4A4A;
+    --text-light: #888;
+    --white: #FFFFFF;
+    --border: rgba(0,0,0,0.08);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--navy);
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -40%;
+    right: -20%;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,168,76,0.12);
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: -20%;
+    right: -5%;
+    width: 340px;
+    height: 340px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,168,76,0.08);
+    pointer-events: none;
+  }
+
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 4rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    color: var(--white);
+    letter-spacing: 0.01em;
+  }
+
+  .nav-logo span {
+    color: var(--gold);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4rem 4rem 2rem;
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+  }
+
+  .hero-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeUp 0.7s ease 0.1s forwards;
+  }
+
+  .hero-eyebrow-line {
+    width: 32px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .hero-eyebrow-text {
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 400;
+  }
+
+  .hero-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(42px, 6vw, 72px);
+    color: var(--white);
+    line-height: 1.08;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.25s forwards;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  .hero-desc {
+    font-size: 17px;
+    color: rgba(255,255,255,0.55);
+    max-width: 520px;
+    line-height: 1.7;
+    margin-bottom: 3rem;
+    font-weight: 300;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.4s forwards;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 16px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.55s forwards;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 28px;
+    background: var(--gold);
+    color: var(--navy);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .btn-primary:hover {
+    background: var(--gold-light);
+    transform: translateY(-1px);
+  }
+
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 28px;
+    background: transparent;
+    color: rgba(255,255,255,0.6);
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.2);
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .btn-outline:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+
+  .hero-bottom {
+    padding: 2rem 4rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    position: relative;
+    z-index: 2;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.7s forwards;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 3rem;
+  }
+
+  .hero-stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 28px;
+    color: var(--white);
+    display: block;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .hero-stat-label {
+    font-size: 11px;
+    color: rgba(255,255,255,0.35);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .hero-location {
+    font-size: 12px;
+    color: rgba(255,255,255,0.3);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .hero-location::before {
+    content: '';
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--gold);
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 6rem 4rem; }
+
+  .section-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 1rem;
+  }
+
+  .section-eyebrow-line { width: 24px; height: 1px; background: var(--gold); }
+
+  .section-eyebrow-text {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+  }
+
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(28px, 4vw, 42px);
+    color: var(--navy);
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+
+  .section-subtitle {
+    font-size: 16px;
+    color: var(--text-mid);
+    max-width: 540px;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* ── WHAT I DO ── */
+  .what-i-do { background: var(--white); }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+    margin-top: 4rem;
+  }
+
+  .what-left { }
+
+  .what-right { padding-top: 1rem; }
+
+  .statement {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    color: var(--navy);
+    line-height: 1.5;
+    padding-left: 1.5rem;
+    border-left: 2px solid var(--gold);
+    margin-bottom: 2rem;
+    font-style: italic;
+  }
+
+  .what-body {
+    font-size: 15px;
+    color: var(--text-mid);
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+  }
+
+  .pillars {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .pillar {
+    background: var(--cream);
+    padding: 1.25rem;
+    border-left: 2px solid var(--navy-mid);
+  }
+
+  .pillar-num {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+
+  .pillar-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+
+  .pillar-desc {
+    font-size: 12px;
+    color: var(--text-light);
+    line-height: 1.5;
+  }
+
+  /* ── SERVICES ── */
+  .services { background: var(--cream); }
+
+  .services-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .services-tabs {
+    display: flex;
+    gap: 4px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    padding: 4px;
+  }
+
+  .stab {
+    padding: 7px 16px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    color: var(--text-light);
+    transition: all 0.2s;
+  }
+
+  .stab.active {
+    background: var(--navy);
+    color: var(--gold);
+  }
+
+  .service-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1px;
+    background: var(--border);
+  }
+
+  .service-panel { display: none; }
+  .service-panel.active { display: block; }
+
+  .service-item {
+    background: var(--white);
+    padding: 1.75rem;
+    transition: background 0.2s;
+    cursor: default;
+  }
+
+  .service-item:hover { background: #FAFAF8; }
+
+  .service-item-num {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+
+  .service-item-name {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--navy);
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+
+  .service-item-desc {
+    font-size: 13px;
+    color: var(--text-light);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  /* ── WHO I WORK WITH ── */
+  .who { background: var(--navy); }
+
+  .who .section-title { color: var(--white); }
+
+  .who .section-subtitle { color: rgba(255,255,255,0.45); }
+
+  .industries {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1px;
+    margin-top: 3.5rem;
+    background: rgba(255,255,255,0.06);
+  }
+
+  .industry {
+    padding: 2rem;
+    background: var(--navy);
+    border-top: 2px solid transparent;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .industry:hover {
+    border-color: var(--gold);
+    background: var(--navy-mid);
+  }
+
+  .industry-icon {
+    font-size: 22px;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .industry-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--white);
+    margin-bottom: 6px;
+  }
+
+  .industry-desc {
+    font-size: 12px;
+    color: rgba(255,255,255,0.35);
+    line-height: 1.5;
+    font-weight: 300;
+  }
+
+  /* ── HOW IT WORKS ── */
+  .how { background: var(--white); }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    margin-top: 3.5rem;
+    position: relative;
+  }
+
+  .steps::before {
+    content: '';
+    position: absolute;
+    top: 28px;
+    left: calc(16.66% + 20px);
+    right: calc(16.66% + 20px);
+    height: 1px;
+    background: var(--cream-dark);
+    z-index: 0;
+  }
+
+  .step { padding: 0 2rem 0 0; position: relative; z-index: 1; }
+
+  .step-num-wrap {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 1.5rem;
+  }
+
+  .step-num {
+    width: 56px;
+    height: 56px;
+    background: var(--navy);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+
+  .step-title {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--navy);
+  }
+
+  .step-desc {
+    font-size: 14px;
+    color: var(--text-light);
+    line-height: 1.7;
+    font-weight: 300;
+    padding-left: 72px;
+    margin-top: -0.5rem;
+  }
+
+  /* ── SAMPLE WORK ── */
+  .samples { background: var(--cream); }
+
+  .sample-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .sample-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .sample-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(13,27,42,0.1);
+  }
+
+  .sample-top {
+    background: var(--navy);
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .sample-top::after {
+    content: attr(data-label);
+    position: absolute;
+    bottom: -10px;
+    right: -10px;
+    font-family: 'DM Serif Display', serif;
+    font-size: 80px;
+    color: rgba(255,255,255,0.04);
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .sample-type {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+
+  .sample-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    color: var(--white);
+    line-height: 1.3;
+  }
+
+  .sample-body {
+    padding: 1.5rem;
+  }
+
+  .sample-desc {
+    font-size: 13px;
+    color: var(--text-light);
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+    font-weight: 300;
+  }
+
+  .sample-tag {
+    display: inline-block;
+    font-size: 10px;
+    padding: 4px 10px;
+    background: var(--cream);
+    color: var(--text-mid);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin: 2px;
+  }
+
+  /* ── CONTACT ── */
+  .contact {
+    background: var(--navy);
+    text-align: center;
+    padding: 8rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .contact::before {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 700px;
+    height: 700px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,168,76,0.08);
+    pointer-events: none;
+  }
+
+  .contact .section-eyebrow { justify-content: center; }
+
+  .contact .section-title {
+    color: var(--white);
+    max-width: 600px;
+    margin: 0 auto 1.5rem;
+  }
+
+  .contact .section-subtitle {
+    color: rgba(255,255,255,0.4);
+    margin: 0 auto 3rem;
+    text-align: center;
+    max-width: 480px;
+  }
+
+  .contact-info {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .contact-item {
+    text-align: center;
+  }
+
+  .contact-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.25);
+    margin-bottom: 6px;
+  }
+
+  .contact-value {
+    font-size: 15px;
+    color: rgba(255,255,255,0.7);
+    font-weight: 300;
+  }
+
+  .contact-divider {
+    width: 1px;
+    background: rgba(255,255,255,0.1);
+    align-self: stretch;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #060E16;
+    padding: 1.5rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  footer p {
+    font-size: 12px;
+    color: rgba(255,255,255,0.2);
+  }
+
+  footer span {
+    font-size: 12px;
+    color: rgba(255,255,255,0.15);
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .nav { padding: 1.5rem 1.5rem; }
+    .nav-links { display: none; }
+    section { padding: 4rem 1.5rem; }
+    .hero-content { padding: 3rem 1.5rem 1.5rem; }
+    .hero-bottom { padding: 1.5rem; flex-direction: column; gap: 1rem; }
+    .two-col { grid-template-columns: 1fr; gap: 2.5rem; }
+    .steps { grid-template-columns: 1fr; }
+    .steps::before { display: none; }
+    .step { padding: 0 0 2rem; }
+    .industries { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── HERO ── -->
+<header class="hero">
+  <nav class="nav">
+    <div class="nav-logo">Josh <span>Acosta</span></div>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#work">Sample Work</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-line"></div>
+      <span class="hero-eyebrow-text">Analytical & Reporting Services</span>
+    </div>
+    <h1 class="hero-title">Research and analysis<br>that helps you <em>stay ahead</em><br>of your market.</h1>
+    <p class="hero-desc">I help independent real estate agents and local businesses make better decisions — through market reports, competitor intelligence, and content strategy delivered as clean, ready-to-use documents.</p>
+    <div class="hero-cta">
+      <a href="#contact" class="btn-primary">Get in touch →</a>
+      <a href="#services" class="btn-outline">View services</a>
+    </div>
+  </div>
+
+  <div class="hero-bottom">
+    <div class="hero-stats">
+      <div>
+        <span class="hero-stat-num">4</span>
+        <span class="hero-stat-label">Service categories</span>
+      </div>
+      <div>
+        <span class="hero-stat-num">20+</span>
+        <span class="hero-stat-label">Deliverable types</span>
+      </div>
+      <div>
+        <span class="hero-stat-num">LV</span>
+        <span class="hero-stat-label">Las Vegas based</span>
+      </div>
+    </div>
+    <div class="hero-location">Las Vegas Metro — serving local & remote clients</div>
+  </div>
+</header>
+
+<!-- ── WHAT I DO ── -->
+<section class="what-i-do">
+  <div class="two-col">
+    <div class="what-left">
+      <div class="section-eyebrow reveal">
+        <div class="section-eyebrow-line"></div>
+        <span class="section-eyebrow-text">About</span>
+      </div>
+      <h2 class="section-title reveal">Spend more time with clients. Less time chasing information.</h2>
+    </div>
+    <div class="what-right reveal">
+      <p class="statement">"I deliver the research. You deliver the results."</p>
+      <p class="what-body">Most agents and small business owners are too busy running their business to sit down and analyze their market, audit their competition, or build out content strategy. That's where I come in.</p>
+      <p class="what-body">I compile the data, write the analysis, and hand you a polished document — so you always have something sharp to show clients and something useful to act on.</p>
+      <div class="pillars">
+        <div class="pillar">
+          <span class="pillar-num">01</span>
+          <div class="pillar-name">Market Research</div>
+          <div class="pillar-desc">Price trends, inventory ratios, relocation guides</div>
+        </div>
+        <div class="pillar">
+          <span class="pillar-num">02</span>
+          <div class="pillar-name">Competitor Intel</div>
+          <div class="pillar-desc">Agent comparisons, social audits, positioning gaps</div>
+        </div>
+        <div class="pillar">
+          <span class="pillar-num">03</span>
+          <div class="pillar-name">Content Support</div>
+          <div class="pillar-desc">Market updates, newsletters, hashtag research</div>
+        </div>
+        <div class="pillar">
+          <span class="pillar-num">04</span>
+          <div class="pillar-name">Operational Review</div>
+          <div class="pillar-desc">Lead audits, follow-up analysis, onboarding gaps</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SERVICES ── -->
+<section class="services" id="services">
+  <div class="services-header">
+    <div>
+      <div class="section-eyebrow reveal">
+        <div class="section-eyebrow-line"></div>
+        <span class="section-eyebrow-text">Services</span>
+      </div>
+      <h2 class="section-title reveal">What I deliver</h2>
+    </div>
+    <div class="services-tabs reveal">
+      <button class="stab active" onclick="switchTab('market', this)">Market</button>
+      <button class="stab" onclick="switchTab('content', this)">Content</button>
+      <button class="stab" onclick="switchTab('intel', this)">Intel</button>
+      <button class="stab" onclick="switchTab('ops', this)">Ops</button>
+    </div>
+  </div>
+
+  <div class="service-panel active" id="tab-market">
+    <div class="service-grid">
+      <div class="service-item"><div class="service-item-num">01</div><div class="service-item-name">Neighborhood Price Trend Report</div><div class="service-item-desc">Average sold price, price per sq ft, and days on market for a specific zip code over the last 3–6 months.</div></div>
+      <div class="service-item"><div class="service-item-num">02</div><div class="service-item-name">New Listing vs. Sold Ratio Report</div><div class="service-item-desc">Shows whether inventory is building or getting absorbed fast — helps time listings and offers.</div></div>
+      <div class="service-item"><div class="service-item-num">03</div><div class="service-item-name">Seasonal Market Report</div><div class="service-item-desc">How the Las Vegas market behaves across seasons — useful for advising clients on when to move.</div></div>
+      <div class="service-item"><div class="service-item-num">04</div><div class="service-item-name">Relocation Market Report</div><div class="service-item-desc">A Las Vegas summary for out-of-state buyer leads from CA, TX, or the Pacific Northwest.</div></div>
+      <div class="service-item"><div class="service-item-num">05</div><div class="service-item-name">Interest Rate Impact Report</div><div class="service-item-desc">How current mortgage rates are affecting buying power and which price ranges are most impacted.</div></div>
+      <div class="service-item"><div class="service-item-num">06</div><div class="service-item-name">Luxury Market Report</div><div class="service-item-desc">Specific to MacDonald Highlands, Seven Hills, or Summerlin West — for agents in the high-end segment.</div></div>
+    </div>
+  </div>
+
+  <div class="service-panel" id="tab-content">
+    <div class="service-grid">
+      <div class="service-item"><div class="service-item-num">01</div><div class="service-item-name">Weekly Market Update</div><div class="service-item-desc">A 150–200 word summary of your market formatted for email or Instagram — ready to post.</div></div>
+      <div class="service-item"><div class="service-item-num">02</div><div class="service-item-name">Monthly Social Media Performance Report</div><div class="service-item-desc">Follower growth, engagement rate, best and worst performing posts, and clear recommendations.</div></div>
+      <div class="service-item"><div class="service-item-num">03</div><div class="service-item-name">Competitor Social Media Audit</div><div class="service-item-desc">How your top 3–5 competitors are posting — content types, hashtags, frequency, and gaps you can own.</div></div>
+      <div class="service-item"><div class="service-item-num">04</div><div class="service-item-name">Content Gap Analysis</div><div class="service-item-desc">Topics and formats your audience wants that you are not currently covering — a clear content roadmap.</div></div>
+      <div class="service-item"><div class="service-item-num">05</div><div class="service-item-name">Hashtag & SEO Research Report</div><div class="service-item-desc">The search terms and hashtags your ideal clients are actually using so your content gets found.</div></div>
+      <div class="service-item"><div class="service-item-num">06</div><div class="service-item-name">Influencer & Partnership Report</div><div class="service-item-desc">Local Las Vegas influencers and complementary businesses worth collaborating with to grow your reach.</div></div>
+    </div>
+  </div>
+
+  <div class="service-panel" id="tab-intel">
+    <div class="service-grid">
+      <div class="service-item"><div class="service-item-num">01</div><div class="service-item-name">Agent Competitive Analysis</div><div class="service-item-desc">How you compare to your top 3–5 competitors — listings, sold volume, days on market, price reductions.</div></div>
+      <div class="service-item"><div class="service-item-num">02</div><div class="service-item-name">Buyer Persona Report</div><div class="service-item-desc">Who is actually buying in your target neighborhood — income, origin, and buyer type breakdown.</div></div>
+      <div class="service-item"><div class="service-item-num">03</div><div class="service-item-name">Pricing Context Report</div><div class="service-item-desc">Written market analysis covering absorption rates and competitive positioning to help advise sellers confidently.</div></div>
+      <div class="service-item"><div class="service-item-num">04</div><div class="service-item-name">Expired Listing Analysis</div><div class="service-item-desc">Research into why listings in a specific area are expiring unsold and what agents can do differently.</div></div>
+    </div>
+  </div>
+
+  <div class="service-panel" id="tab-ops">
+    <div class="service-grid">
+      <div class="service-item"><div class="service-item-num">01</div><div class="service-item-name">Lead Source Analysis</div><div class="service-item-desc">Where your leads are actually coming from and which sources convert best — so you invest time wisely.</div></div>
+      <div class="service-item"><div class="service-item-num">02</div><div class="service-item-name">Client Follow-Up Audit</div><div class="service-item-desc">A review of your follow-up process from first contact to close — identifies where leads go cold.</div></div>
+      <div class="service-item"><div class="service-item-num">03</div><div class="service-item-name">Onboarding Flow Review</div><div class="service-item-desc">Maps what happens after a client signs with you and identifies gaps and automation opportunities.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── WHO ── -->
+<section class="who">
+  <div class="section-eyebrow reveal">
+    <div class="section-eyebrow-line"></div>
+    <span class="section-eyebrow-text" style="color:var(--gold)">Who I work with</span>
+  </div>
+  <h2 class="section-title reveal">Built for independent operators</h2>
+  <p class="section-subtitle reveal">Small teams and solo professionals who need the intelligence of a full research department — without the overhead.</p>
+  <div class="industries reveal">
+    <div class="industry"><span class="industry-icon">🏠</span><div class="industry-name">Real estate agents</div><div class="industry-desc">Independent agents at small brokerages who need market reports and competitive insight</div></div>
+    <div class="industry"><span class="industry-icon">💍</span><div class="industry-name">Wedding vendors</div><div class="industry-desc">Photographers, planners, and venues managing high inquiry volume in the Vegas market</div></div>
+    <div class="industry"><span class="industry-icon">🏡</span><div class="industry-name">Short-term rental hosts</div><div class="industry-desc">Airbnb operators who need pricing benchmarks and competitor listing analysis</div></div>
+    <div class="industry"><span class="industry-icon">🍽️</span><div class="industry-name">Independent restaurants</div><div class="industry-desc">Local owners who want to understand their competition and build a stronger online presence</div></div>
+    <div class="industry"><span class="industry-icon">💪</span><div class="industry-name">Fitness coaches</div><div class="industry-desc">Personal trainers and studios who need client research and content strategy support</div></div>
+    <div class="industry"><span class="industry-icon">📋</span><div class="industry-name">Other small businesses</div><div class="industry-desc">Any local Las Vegas business that needs research delivered without the agency price tag</div></div>
+  </div>
+</section>
+
+<!-- ── HOW IT WORKS ── -->
+<section class="how">
+  <div class="section-eyebrow reveal">
+    <div class="section-eyebrow-line"></div>
+    <span class="section-eyebrow-text">Process</span>
+  </div>
+  <h2 class="section-title reveal">How it works</h2>
+  <p class="section-subtitle reveal">Three steps from first conversation to a deliverable in your inbox.</p>
+  <div class="steps">
+    <div class="step reveal">
+      <div class="step-num-wrap">
+        <div class="step-num">01</div>
+        <div class="step-title">Brief introduction</div>
+      </div>
+      <p class="step-desc">We connect for 15–20 minutes to talk through your business, your target clients, and where you feel you are missing information or losing time.</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-num-wrap">
+        <div class="step-num">02</div>
+        <div class="step-title">I get to work</div>
+      </div>
+      <p class="step-desc">I put together an initial deliverable based on what we discussed — no setup required on your end, no paperwork, no commitments.</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-num-wrap">
+        <div class="step-num">03</div>
+        <div class="step-title">You review it</div>
+      </div>
+      <p class="step-desc">Take a look at the work. If it is useful and you want to keep going, we figure out what ongoing support looks like. If not, no problem at all.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── SAMPLE WORK ── -->
+<section class="samples" id="work">
+  <div class="section-eyebrow reveal">
+    <div class="section-eyebrow-line"></div>
+    <span class="section-eyebrow-text">Sample work</span>
+  </div>
+  <h2 class="section-title reveal">Recent deliverables</h2>
+  <p class="section-subtitle reveal">Examples of the research and analysis I produce for clients.</p>
+  <div class="sample-grid">
+    <div class="sample-card reveal">
+      <div class="sample-top" data-label="01">
+        <div class="sample-type">Market research</div>
+        <div class="sample-name">Las Vegas Investor Submarket Analysis 2026</div>
+      </div>
+      <div class="sample-body">
+        <p class="sample-desc">A comprehensive breakdown of six Las Vegas submarkets with investment potential, strategy recommendations by goal, and a risk assessment — formatted for investor clients.</p>
+        <span class="sample-tag">Real estate</span>
+        <span class="sample-tag">Investment</span>
+        <span class="sample-tag">Henderson</span>
+      </div>
+    </div>
+    <div class="sample-card reveal">
+      <div class="sample-top" data-label="02">
+        <div class="sample-type">Competitive intelligence</div>
+        <div class="sample-name">Agent Competitive Analysis — Henderson Market</div>
+      </div>
+      <div class="sample-body">
+        <p class="sample-desc">A side-by-side breakdown of an agent's top five local competitors covering sold volume, days on market, review counts, social presence, and positioning gaps.</p>
+        <span class="sample-tag">Real estate</span>
+        <span class="sample-tag">Competitor analysis</span>
+      </div>
+    </div>
+    <div class="sample-card reveal">
+      <div class="sample-top" data-label="03">
+        <div class="sample-type">Content & marketing</div>
+        <div class="sample-name">Social Media Audit — Local Restaurant</div>
+      </div>
+      <div class="sample-body">
+        <p class="sample-desc">An audit of a local restaurant's social media presence vs. five competitors — covering posting frequency, engagement rates, content gaps, and a 30-day recommendation plan.</p>
+        <span class="sample-tag">Restaurant</span>
+        <span class="sample-tag">Social media</span>
+        <span class="sample-tag">Content strategy</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section class="contact" id="contact">
+  <div class="section-eyebrow">
+    <div class="section-eyebrow-line"></div>
+    <span class="section-eyebrow-text" style="color:var(--gold)">Get in touch</span>
+  </div>
+  <h2 class="section-title reveal">Ready to see what I can deliver?</h2>
+  <p class="section-subtitle reveal">Reach out and tell me about your business. I'll respond within 24 hours.</p>
+  <a href="mailto:[your-email]" class="btn-primary reveal" style="display:inline-flex; margin: 0 auto;">Send me a message →</a>
+  <div class="contact-info reveal">
+    <div class="contact-item">
+      <div class="contact-label">Name</div>
+      <div class="contact-value">Josh Acosta</div>
+    </div>
+    <div class="contact-divider"></div>
+    <div class="contact-item">
+      <div class="contact-label">Email</div>
+      <div class="contact-value">[your-email]</div>
+    </div>
+    <div class="contact-divider"></div>
+    <div class="contact-item">
+      <div class="contact-label">Location</div>
+      <div class="contact-value">Las Vegas, Nevada</div>
+    </div>
+    <div class="contact-divider"></div>
+    <div class="contact-item">
+      <div class="contact-label">Response time</div>
+      <div class="contact-value">Within 24 hours</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Josh Acosta — Analytical & Reporting Services</p>
+  <span>Las Vegas, Nevada</span>
+</footer>
+
+<script>
+function switchTab(id, btn) {
+  document.querySelectorAll('.service-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.stab').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
